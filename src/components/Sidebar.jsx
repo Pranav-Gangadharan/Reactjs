@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Sidebar() {
 	return (
 		<>
@@ -8,7 +10,7 @@ function Sidebar() {
 				{/* <!-- Sidebar - Brand --> */}
 				<a
 					className='sidebar-brand d-flex align-items-center justify-content-center'
-					href='javascript(void)'
+					href='/'
 				>
 					<div className='sidebar-brand-icon rotate-n-15'>
 						<i className='fas fa-laugh-wink'></i>
@@ -22,11 +24,15 @@ function Sidebar() {
 				<hr className='sidebar-divider my-0' />
 
 				{/* <!-- Nav Item - Dashboard --> */}
-				<li className='nav-item active'>
-					<a className='nav-link' href='javascript(void)'>
-						<i className='fas fa-fw fa-tachometer-alt'></i>
-						<span>Dashboard</span>
-					</a>
+				<li className='nav-item'>
+					<div className='nav-link' href='javascript(void)'>
+						<Link to={'/dashboard'}>
+							<i className='fas fa-fw fa-tachometer-alt'></i>
+							<span style={{ color: 'white', textDecoration: 'none' }}>
+								Dashboard
+							</span>
+						</Link>
+					</div>
 				</li>
 
 				{/* <!-- Divider --> */}
@@ -37,17 +43,14 @@ function Sidebar() {
 
 				{/* <!-- Nav Item - Pages Collapse Menu --> */}
 				<li className='nav-item'>
-					<a
-						className='nav-link collapsed'
-						href='javascript(void)'
-						data-toggle='collapse'
-						data-target='#collapseTwo'
-						aria-expanded='true'
-						aria-controls='collapseTwo'
-					>
-						<i className='fas fa-fw fa-cog'></i>
-						<span>Add User</span>
-					</a>
+					<div className='nav-link collapsed'>
+						<Link to={'/create'}>
+							<i className='fas fa-fw fa-cog'></i>
+							<span style={{ color: 'white', textDecoration: 'none' }}>
+								Add User
+							</span>
+						</Link>
+					</div>
 				</li>
 
 				{/* <!-- Nav Item - Utilities Collapse Menu --> */}

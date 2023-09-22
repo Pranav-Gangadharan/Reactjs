@@ -1,8 +1,8 @@
-import Tile from "./Tile";
+import { Button, Table } from 'react-bootstrap';
+import Tile from './Tile';
 
-function Dashborad() {
-
-	let data = [
+function Dashborad({ data,setData }) {
+	let dashboardData = [
 		{
 			color: 'primary',
 			icon: 'fa-calendar',
@@ -37,6 +37,13 @@ function Dashborad() {
 		},
 	];
 
+
+	let handleDelete =(index)=>{
+		let newArray=[...data]//deep copy
+		newArray.splice(index,1)
+		setData(newArray)
+	}
+
 	return (
 		<>
 			<div className='container-fluid'>
@@ -52,12 +59,51 @@ function Dashborad() {
 				</div>
 
 				<div className='row'>
-					{
-						data.map((e,i)=>{
-							return <Tile color={e.color} icon={e.icon} title={e.title} isProgress={e.isProgress} value={e.value} key={i}/>
-						})
-					}
-				
+					{dashboardData.map((e, i) => {
+						return (
+							<Tile
+								color={e.color}
+								icon={e.icon}
+								title={e.title}
+								isProgress={e.isProgress}
+								value={e.value}
+								key={i}
+							/>
+						);
+					})}
+				</div>
+
+				<div className='row'>
+					<Table striped bordered hover>
+						<thead>
+							<tr>
+								<th>s.no</th>
+								<th>userName</th>
+								<th>Email</th>
+								<th>Mobile</th>
+								<th>batch</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							{data.map((e, i) => {
+								return (
+									<tr key={i}>
+										<td>{i + 1}</td>
+										<td>{e.userName}</td>
+										<td>{e.email}</td>
+										<td>{e.mobile}</td>
+										<td>{e.batch}</td>
+										<td>
+											<Button variant='info'>Edit</Button>
+											&nbsp; &nbsp;
+											<Button variant='danger' onClick={()=>handleDelete(i)} >Delete</Button>
+										</td>
+									</tr>
+								);
+							})}
+						</tbody>
+					</Table>
 				</div>
 			</div>
 		</>
