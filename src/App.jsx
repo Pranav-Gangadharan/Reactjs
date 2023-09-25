@@ -1,26 +1,27 @@
-import Sidebar from "./components/Sidebar";
-import Dashborad from "./components/Dashborad";
-import {BrowserRouter,Routes,Route}from "react-router-dom"
-import Create from "./components/Create";
-import Edit from "./components/Edit";
-import { useState } from "react";
+import Sidebar from './components/Sidebar';
+import Dashborad from './components/Dashborad';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Create from './components/Create';
+import Edit from './components/Edit';
+import { useState } from 'react';
+import { Navigate } from 'react-router-dom';
 
 function App() {
-  let [tableData, setTableData] = useState([
+	let [tableData, setTableData] = useState([
 		{
 			userName: 'Pranav',
 			email: 'pranav@gmail.com',
-			mobile: '1111121',
+			mobile: '1111121891',
 			batch: 'B100',
 		},
 		{
 			userName: 'Buddy',
 			email: 'buddy@gmail.com',
-			mobile: '1111121',
+			mobile: '1111121891',
 			batch: 'B101',
 		},
 	]);
-  return (
+	return (
 		<>
 			<div id='wrapper'>
 				<BrowserRouter>
@@ -34,7 +35,11 @@ function App() {
 							path='/create'
 							element={<Create data={tableData} setData={setTableData} />}
 						/>
-						<Route path='/edit' element={<Edit />} />
+						<Route
+							path='/edit/:id'
+							element={<Edit data={tableData} setData={setTableData} />}
+						/>
+						<Route path='*' element={<Navigate to={'/dashboard'} />} />
 					</Routes>
 				</BrowserRouter>
 			</div>
@@ -42,4 +47,4 @@ function App() {
 	);
 }
 
-export default App
+export default App;

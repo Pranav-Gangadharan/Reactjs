@@ -1,7 +1,8 @@
 import { Button, Table } from 'react-bootstrap';
 import Tile from './Tile';
+import { useNavigate } from 'react-router-dom';
 
-function Dashborad({ data,setData }) {
+function Dashborad({ data, setData }) {
 	let dashboardData = [
 		{
 			color: 'primary',
@@ -37,12 +38,13 @@ function Dashborad({ data,setData }) {
 		},
 	];
 
+	let handleDelete = (index) => {
+		let newArray = [...data]; //deep copy
+		newArray.splice(index, 1);
+		setData(newArray);
+	};
 
-	let handleDelete =(index)=>{
-		let newArray=[...data]//deep copy
-		newArray.splice(index,1)
-		setData(newArray)
-	}
+	const navigate = useNavigate();
 
 	return (
 		<>
@@ -95,9 +97,16 @@ function Dashborad({ data,setData }) {
 										<td>{e.mobile}</td>
 										<td>{e.batch}</td>
 										<td>
-											<Button variant='info'>Edit</Button>
+											<Button
+												variant='info'
+												onClick={() => navigate(`/edit/${i}`)}
+											>
+												Edit
+											</Button>
 											&nbsp; &nbsp;
-											<Button variant='danger' onClick={()=>handleDelete(i)} >Delete</Button>
+											<Button variant='danger' onClick={() => handleDelete(i)}>
+												Delete
+											</Button>
 										</td>
 									</tr>
 								);

@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import '../index.css'
 
 function Sidebar() {
 	return (
@@ -55,17 +56,12 @@ function Sidebar() {
 
 				{/* <!-- Nav Item - Utilities Collapse Menu --> */}
 				<li className='nav-item'>
-					<a
-						className='nav-link collapsed'
-						href='javascript(void)'
-						data-toggle='collapse'
-						data-target='#collapseUtilities'
-						aria-expanded='true'
-						aria-controls='collapseUtilities'
-					>
+					<div className='nav-link collapsed'>
 						<i className='fas fa-fw fa-wrench'></i>
-						<span>View User</span>
-					</a>
+						<span style={{ color: 'white', textDecoration: 'none' }}>
+							Edit User
+						</span>
+					</div>
 				</li>
 			</ul>
 		</>
