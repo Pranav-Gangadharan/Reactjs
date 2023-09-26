@@ -1,12 +1,12 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import { useEffect } from 'react';
 
 function Edit({ data, setData }) {
-	let navigate = useNavigate();
+	const navigate = useNavigate();
 
 	const UserSchema = Yup.object().shape({
 		userName: Yup.string()
@@ -23,12 +23,18 @@ function Edit({ data, setData }) {
 
 	const getData = (index) => {
 		return {
-			userName: `${data[index].userName}`,
-			email: `${data[index].email}`,
-			mobile: `${data[index].mobile}`,
-			batch: `${data[index].batch}`,
+			userName: data[index].userName,
+			email: data[index].email,
+			mobile: data[index].mobile,
+			batch: data[index].batch,
 		};
 	};
+
+	useEffect(() => {
+		if ( Number(params.id) >= data.length) {
+			navigate('/dashboard');
+		}
+	}, [params.id]);
 
 	return (
 		<>

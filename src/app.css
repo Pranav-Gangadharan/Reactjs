@@ -1,0 +1,24 @@
+.pageButtons {
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+.pageButtons li {
+    padding: 5px 15px;
+    margin: 5px;
+    border-radius: 5px;
+    border: 2px solid teal;
+    cursor: pointer;
+    transition: all 1ms ease;
+}
+
+.pageButtons li:hover {
+    background-color: teal;
+    color: white;
+}
+
+.active {
+    background-color: teal;
+    color: white;
+}

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import '../index.css'
+import '../index.css';
 
 function Sidebar() {
 	return (
@@ -57,10 +57,28 @@ function Sidebar() {
 				{/* <!-- Nav Item - Utilities Collapse Menu --> */}
 				<li className='nav-item'>
 					<div className='nav-link collapsed'>
-						<i className='fas fa-fw fa-wrench'></i>
-						<span style={{ color: 'white', textDecoration: 'none' }}>
-							Edit User
-						</span>
+						<Link to={'/nested'}>
+							<i className='fas fa-fw fa-wrench'></i>
+							<span style={{ color: 'white', textDecoration: 'none' }}>
+								Nested example
+							</span>
+						</Link>
+					</div>
+				</li>
+
+				<hr className='sidebar-divider' />
+
+				{/* <!-- Heading --> */}
+				<div className='sidebar-heading'>Hooks</div>
+
+				<li className='nav-item'>
+					<div className='nav-link collapsed'>
+						<Link to={'/useRef'}>
+							<i className='fas fa-fw fa-wrench'></i>
+							<span style={{ color: 'white', textDecoration: 'none' }}>
+								UserRef
+							</span>
+						</Link>
 					</div>
 				</li>
 			</ul>
