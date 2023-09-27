@@ -11,6 +11,7 @@ import Product from './components/Nested/Product';
 import Staff from './components/Nested/Staff';
 import Recipt from './components/Nested/Recipt';
 import UseRef from './components/Hooks/UseRef';
+import UseReducer from './components/Hooks/UseReducer';
 
 function App() {
 	let [tableData, setTableData] = useState([
@@ -52,6 +53,7 @@ function App() {
 							<Route path='recipt' element={<Recipt />} />
 						</Route>
 						<Route path='/useRef' element={<UseRef />} />
+						<Route path='/useReducer' element={<UseReducer />} />
 						<Route path='*' element={<Navigate to={'/dashboard'} />} />
 					</Routes>
 				</BrowserRouter>

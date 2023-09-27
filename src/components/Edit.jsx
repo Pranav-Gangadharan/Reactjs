@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 function Edit({ data, setData }) {
 	const navigate = useNavigate();
@@ -20,21 +20,29 @@ function Edit({ data, setData }) {
 	});
 
 	const params = useParams();
-
+	const [initialValuesForm, setInitialValuesForm] = useState({
+		userName: '',
+		email: '',
+		mobile: '',
+		batch: '',
+	});
 	const getData = (index) => {
-		return {
-			userName: data[index].userName,
-			email: data[index].email,
-			mobile: data[index].mobile,
-			batch: data[index].batch,
-		};
+		let newValues = { ...initialValuesForm };
+
+		(newValues.userName = data[index].userName),
+			(newValues.email = data[index].email),
+			(newValues.mobile = data[index].mobile),
+			(newValues.batch = data[index].batch),
+			setInitialValuesForm(newValues);
 	};
 
 	useEffect(() => {
-		if ( Number(params.id) >= data.length) {
+		if (Number(params.id) >= data.length) {
 			navigate('/dashboard');
+		} else {
+			getData(Number(params.id));
 		}
-	}, [params.id]);
+	}, []);
 
 	return (
 		<>
@@ -45,7 +53,8 @@ function Edit({ data, setData }) {
 
 				<div className='row'>
 					<Formik
-						initialValues={getData(Number(params.id))}
+						enableReinitialize={true}
+						initialValues={initialValuesForm}
 						validationSchema={UserSchema}
 						onSubmit={(values) => {
 							let newArray = [...data];

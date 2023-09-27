@@ -16,10 +16,47 @@ function UseRef() {
 		ref1.current.focus();
 	}, []);
 
+	function handleChange(e, ref) {
+		// let pressedValue = e.target.value;
+
+		if (e.target.value.length === 1) {
+			if (ref === ref1) ref2.current.focus();
+			if (ref === ref2) ref3.current.focus();
+			if (ref === ref3) ref4.current.focus();
+		}
+		// else {
+		// 	if (ref === ref1) {
+		// 		alert('Invalid otp');
+		// 		ref1.current.value = '';
+		// 	}
+		// 	if (ref === ref2) {
+		// 		alert('Invalid otp');
+		// 		ref2.current.value = '';
+		// 	}
+		// 	if (ref === ref3) {
+		// 		alert('Invalid otp');
+		// 		ref3.current.value = '';
+		// 	}
+		// 	if (ref === ref4) {
+		// 		alert('Invalid otp');
+		// 		ref4.current.value = '';
+		// 	}
+		// }
+	}
+
+	function handleKeyUp(e, ref) {
+		if (e.keyCode === 8 || (e.keyCode === 46 && e.target.value.length === 0)) {
+			if (ref === ref4) ref3.current.focus();
+			if (ref === ref3) ref2.current.focus();
+			if (ref === ref2) ref1.current.focus();
+		}
+	}
+
 	function handleClick() {
 		const otp = `${ref1.current.value}${ref2.current.value}${ref3.current.value}${ref4.current.value}`;
-		if (otp.length === 4) alert(`enterder otp is ${otp}`);
-		else {
+		if (otp.length === 4) {
+			alert(`enterder otp is ${otp}`);
+		} else {
 			alert('Invalid otp');
 			ref1.current.value = '';
 			ref2.current.value = '';
@@ -39,17 +76,29 @@ function UseRef() {
 			<h2>Components Rendered {count.current}</h2>
 			<div>
 				<h3>Enter OTP</h3>
-				<input type='text' ref={ref1} onChange={() => ref2.current.focus()} />
-				<input type='text' ref={ref2} onChange={() => ref3.current.focus()} />
-				<input type='text' ref={ref3} onChange={() => ref4.current.focus()} />
+				<input
+					type='text'
+					ref={ref1}
+					onChange={(e) => handleChange(e, ref1)}
+					onKeyUp={(e) => handleKeyUp(e, ref1)}
+				/>
+				<input
+					type='text'
+					ref={ref2}
+					onChange={(e) => handleChange(e, ref2)}
+					onKeyUp={(e) => handleKeyUp(e, ref2)}
+				/>
+				<input
+					type='text'
+					ref={ref3}
+					onChange={(e) => handleChange(e, ref3)}
+					onKeyUp={(e) => handleKeyUp(e, ref3)}
+				/>
 				<input
 					type='text'
 					ref={ref4}
-					onChange={() =>
-						setTimeout(() => {
-							handleClick(), 1000;
-						})
-					}
+					onChange={(e) => handleChange(e, ref4)}
+					onKeyUp={(e) => handleKeyUp(e, ref4)}
 				/>
 
 				<Button variant='primary' onClick={() => handleClick()}>

@@ -81,6 +81,17 @@ function Sidebar() {
 						</Link>
 					</div>
 				</li>
+
+				<li className='nav-item'>
+					<div className='nav-link collapsed'>
+						<Link to={'/useReducer'}>
+							<i className='fas fa-fw fa-wrench'></i>
+							<span style={{ color: 'white', textDecoration: 'none' }}>
+								UserReducer
+							</span>
+						</Link>
+					</div>
+				</li>
 			</ul>
 		</>
 	);
