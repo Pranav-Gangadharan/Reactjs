@@ -1,45 +1,16 @@
 import { Button, Table } from 'react-bootstrap';
 import Tile from './Tile';
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { UserDataContext } from './Context/UserContext';
+import { DashboardDataContext } from './Context/DashboardContext';
+function Dashborad() {
+	let { dashboardData } = useContext(DashboardDataContext);
 
-function Dashborad({ data, setData }) {
-	let dashboardData = [
-		{
-			color: 'primary',
-			icon: 'fa-calendar',
-			title: 'Earnings(Monthly)',
-			value: '$40,000',
-		},
-		{
-			color: 'success',
-			icon: 'fa-dollar-sign',
-			title: 'Earnings(Annual)',
-			value: '$2,25,000',
-		},
-		{
-			isProgress: true,
-			color: 'info',
-			icon: 'fa-clipboard-list',
-			title: 'Tasks',
-			value: '90',
-		},
-		{
-			color: 'warning',
-			icon: 'fa-comments',
-			title: 'Tasks',
-			value: '$2,25,000',
-		},
-		{
-			isProgress: true,
-			color: 'danger',
-			icon: 'fa-clipboard-list',
-			title: 'declined',
-			value: '10',
-		},
-	];
+	let {data,setData} = useContext(UserDataContext);
 
 	let handleDelete = (index) => {
-		let newArray = [...data]; //deep copy
+		let newArray = [...data]; //!deep copy
 		newArray.splice(index, 1);
 		setData(newArray);
 	};

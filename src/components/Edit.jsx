@@ -3,10 +3,13 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { UserDataContext } from './Context/UserContext';
 
-function Edit({ data, setData }) {
+function Edit() {
 	const navigate = useNavigate();
+
+	let { data, setData } = useContext(UserDataContext);
 
 	const UserSchema = Yup.object().shape({
 		userName: Yup.string()

@@ -3,9 +3,13 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
+import { useContext } from 'react';
+import { UserDataContext } from './Context/UserContext';
 
-function Create({ data, setData }) {
+function Create() {
 	let navigate = useNavigate();
+
+	let { data, setData } = useContext(UserDataContext);
 
 	const UserSchema = Yup.object().shape({
 		userName: Yup.string()
